@@ -1,3 +1,10 @@
+// only add `router.base = '/<repository-name>/'` if `DEPLOY_ENV` is `GH_PAGES`
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+  router: {
+    base: '/<repository-name>/'
+  }
+} : {}
+
 export default {
   mode: 'spa',
   /*
@@ -24,9 +31,7 @@ export default {
    ** Global CSS
    */
   css: [],
-  router: {
-    base: '/nuxt-todh/'
-  },
+  ...routerBase,
   /*
    ** Plugins to load before mounting the App
    */
